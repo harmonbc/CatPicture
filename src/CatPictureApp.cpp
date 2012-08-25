@@ -14,6 +14,7 @@
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
 
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -21,24 +22,27 @@ using namespace std;
 class CatPictureApp : public AppBasic {
   public:
 	void setup();
-	void mouseDown( MouseEvent event );	
 	void update();
 	void draw();
+
   private:
 	float red;
 	float green;
 	float blue;
+	bool redFinished;
+	bool blueFinished;
+	bool greenFinished;
+	
+
 };
 
 void CatPictureApp::setup()
 {
-	red = 0.01f;
-	green = 0.01f;
-	blue = 0.01f;
-}
-
-void CatPictureApp::mouseDown( MouseEvent event )
-{
+	red = 0.0f;
+	green = 0.0f;
+	blue = 0.0f;
+	redFinished = false;
+	greenFinished = false;
 }
 
 void CatPictureApp::update()
@@ -48,32 +52,45 @@ void CatPictureApp::update()
 /// finished its display it will be set to 0 and the next range of RGB
 /// will be activated.
 
-	if(red != 0.0f)
+	if(!redFinished)
+	{
 		red = red+ 0.01f;
 
-	if((red > 1.0f)||(red == 0.0f))
+		if(red > 1.0f)
+		{
+			
+			red = 0.0f;
+			redFinished = true;
+		}
+	}
+	else if(!greenFinished)
 	{
-		red = 0.0f;
-		if(green != 0.0f)
-			green = green + 0.01f;
-		if((green > 1.0f)||(green == 0.0f))
+		green = green + 0.01f;
+
+		if(green > 1.0f)
 		{
 			green = 0.0f;
-			blue = blue + 0.01f;
-
-			if(blue > 1.0f)
-			{
-				blue = 0.0f;
-				red = 0.01f;
-			}
+			greenFinished= true;
 		}
 		
+	}
+	else
+	{
+		blue = blue + 0.01f;
+
+		if(blue > 1.0f)
+		{
+			redFinished = false;
+			greenFinished = false;
+			blue = 0.0f;
+		}
 	}
 }
 
 void CatPictureApp::draw()
 {
-	gl::clear( Color( red, green, blue ) );
+	gl::drawSolidCircle( Vec2f( 15.0f, 25.0f), 50.0f);
+	///gl::clear( Color( red, green, blue ) );
 
 }
 
