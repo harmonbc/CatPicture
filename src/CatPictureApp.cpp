@@ -89,9 +89,8 @@ void CatPictureApp::update()
 
 void CatPictureApp::draw()
 {
-	gl::drawSolidCircle( Vec2f( 15.0f, 25.0f), 50.0f);
-	///gl::clear( Color( red, green, blue ) );
-
+	gl::clear( Color( red, green, blue ) );
+	
 }
 
 CINDER_APP_BASIC( CatPictureApp, RendererGl )
