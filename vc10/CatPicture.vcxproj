@@ -106,12 +106,6 @@
   <ItemGroup>
     <ClCompile Include="..\src\CatPictureApp.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\resources\hypnocat.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Resources.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
