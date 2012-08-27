@@ -47,10 +47,7 @@ void CatPictureApp::setup()
 
 void CatPictureApp::update()
 {
-
-/// 0.0f is a flag that the color is out of range. After a color has
-/// finished its display it will be set to 0 and the next range of RGB
-/// will be activated.
+//uses bools to rotate through all colors
 
 	if(!redFinished)
 	{
